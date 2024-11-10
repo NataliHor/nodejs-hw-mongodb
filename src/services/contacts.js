@@ -2,8 +2,6 @@ import ContactsCollection from '../db/models/contacts.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 import { SORT_ORDER } from '../constants/index.js';
 
-// export const getContacts = () => ContactsCollection.find();
-
 export const getContactById = (id) => ContactsCollection.findById(id);
 
 export const createContact = (payload) => ContactsCollection.create(payload);
@@ -29,7 +27,6 @@ export const updateContact = async ({ _id, payload, options = {} }) => {
     isNew: Boolean(rawResult.lastErrorObject.upserted),
   };
 };
-
 export const getContacts = async ({
   page = 1,
   perPage = 10,
