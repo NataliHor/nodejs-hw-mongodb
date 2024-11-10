@@ -16,11 +16,11 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 const router = Router();
 
 router.get('/contacts', ctrlWrapper(getContactsController));
-
+router.get('/contacts/:id', isValidId, ctrlWrapper(getContactByIdController));
 router.delete('/contacts/:id', ctrlWrapper(deleteContactController));
 
 router.post(
-  '/',
+  '/contacts',
   validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 );
@@ -35,6 +35,5 @@ router.patch(
   validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
 );
-router.get('/:id', isValidId, ctrlWrapper(getContactByIdController));
 
 export default router;
