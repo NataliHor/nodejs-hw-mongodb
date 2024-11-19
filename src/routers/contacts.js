@@ -15,23 +15,49 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
 const router = Router();
 
-router.get('/contacts', ctrlWrapper(getContactsController));
-router.get('/contacts/:id', isValidId, ctrlWrapper(getContactByIdController));
-router.delete('/contacts/:id', ctrlWrapper(deleteContactController));
+// router.get('/contacts', ctrlWrapper(getContactsController));
+// router.get('/contacts/:id', isValidId, ctrlWrapper(getContactByIdController));
+// router.delete('/contacts/:id', ctrlWrapper(deleteContactController));
+
+// router.post(
+//   '/contacts',
+//   validateBody(createContactSchema),
+//   ctrlWrapper(createContactController),
+// );
+// router.put(
+//   '/contacts/:id',
+//   validateBody(createContactSchema),
+//   ctrlWrapper(upsertContactController),
+// );
+
+// router.patch(
+//   '/contacts/:id',
+//   validateBody(updateContactSchema),
+//   ctrlWrapper(patchContactController),
+// );
+
+router.get('/', ctrlWrapper(getContactsController));
+
+router.get('/:id', isValidId, ctrlWrapper(getContactByIdController));
 
 router.post(
-  '/contacts',
+  '/register',
   validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 );
+
+router.delete('/:id', isValidId, ctrlWrapper(deleteContactController));
+
 router.put(
-  '/contacts/:id',
+  '/:id',
+  isValidId,
   validateBody(createContactSchema),
   ctrlWrapper(upsertContactController),
 );
 
 router.patch(
-  '/contacts/:id',
+  '/:id',
+  isValidId,
   validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
 );
