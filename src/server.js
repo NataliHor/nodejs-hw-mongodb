@@ -23,6 +23,11 @@ export const setupServer = () => {
       target: 'pino-pretty',
     },
   });
+  app.get('/', (req, res) => {
+    res.json({
+      message: 'Hello world!',
+    });
+  });
 
   app.use(logger);
 
@@ -32,7 +37,7 @@ export const setupServer = () => {
 
   app.use(errorHandler);
 
-  const port = Number(env('PORT', 5000));
+  const port = Number(env('PORT', 3000));
 
   app.listen(port, () => console.log(`Server running on port ${port}`));
 };
