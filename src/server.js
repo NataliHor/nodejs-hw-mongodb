@@ -7,8 +7,8 @@ import router from './routers/index.js';
 import { env } from './utils/env.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
-
 import cookieParser from 'cookie-parser';
+import { UPLOAD_DIR } from './constants/index.js';
 
 export const setupServer = () => {
   const app = express();
@@ -40,4 +40,6 @@ export const setupServer = () => {
   const port = Number(env('PORT', 3000));
 
   app.listen(port, () => console.log(`Server running on port ${port}`));
+
+  app.use('/uploads', express.static(UPLOAD_DIR));
 };
